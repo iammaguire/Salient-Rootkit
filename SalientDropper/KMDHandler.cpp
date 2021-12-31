@@ -3,6 +3,13 @@
 bool KMDHandler::connectDriver(wchar_t* name)
 {
 	wchar_t* driverFullPath = (wchar_t*)malloc(sizeof(TCHAR) * MAX_PATH);
+
+	if (driverFullPath == NULL)
+	{
+		printf("[!] Couldn't allocate space for driver path, aborting\n");
+		return false;
+	}
+
 	_snwprintf_s(driverFullPath, MAX_PATH, MAX_PATH, L"\\\\.\\%s", name);
 	HANDLE hDriver = CreateFile(driverFullPath, GENERIC_WRITE | GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 

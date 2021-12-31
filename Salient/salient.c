@@ -1,6 +1,7 @@
 #include "dbgmsg.h"
 #include "salient.h"
 #include "IRPHandler.h"
+#include "AfdHandler.h"
 
 const WCHAR DeviceNameBuffer[] = L"\\Device\\salient";
 const WCHAR DeviceLinkBuffer[] = L"\\DosDevices\\salient";
@@ -35,6 +36,8 @@ VOID UnloadSalient(_In_ PDRIVER_OBJECT DriverObject)
 	UNREFERENCED_PARAMETER(DriverObject);
 	DBG_TRACE("Driver Entry", "Unloading salient driver.");
 
+	FreeAfdHooks();
+
 	UNICODE_STRING unicodeString;
 
 	if (DriverObject->DeviceObject != NULL)
@@ -46,7 +49,7 @@ VOID UnloadSalient(_In_ PDRIVER_OBJECT DriverObject)
 		DBG_TRACE("Unload Salient", "Unregistering device name.");
 		IoDeleteDevice(DriverObject->DeviceObject);
 	}
-	
+
 	return;
 }
 
@@ -83,6 +86,9 @@ NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING regP
 
 	DBG_TRACE("Driver Entry", "Salient driver has been loaded.");
 	DriverObject->DriverUnload = UnloadSalient;
+
+	HookAfd();
+
 	return STATUS_SUCCESS;
 }
 

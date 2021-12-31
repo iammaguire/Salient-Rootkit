@@ -155,7 +155,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DriverSign>
-      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
+      <FileDigestAlgorithm>sha1</FileDigestAlgorithm>
     </DriverSign>
     <PreBuildEvent>
       <Command>
@@ -165,6 +165,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DriverSign>
@@ -198,15 +201,20 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AfdHandler.cpp" />
+    <ClCompile Include="AfdUtil.cpp" />
     <ClCompile Include="IOCTLRoutines.cpp" />
     <ClCompile Include="IRPHandler.cpp" />
     <ClCompile Include="salient.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AfdHandler.h" />
+    <ClInclude Include="AfdUtil.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="dbgmsg.h" />
     <ClInclude Include="IOCTLRoutines.h" />
     <ClInclude Include="IRPHandler.h" />
+    <ClInclude Include="ntdef.h" />
     <ClInclude Include="salient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

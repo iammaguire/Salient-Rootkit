@@ -33,6 +33,12 @@
     <ClCompile Include="IOCTLRoutines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AfdUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AfdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="salient.h">
@@ -48,6 +54,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IOCTLRoutines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AfdUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ntdef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AfdHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
